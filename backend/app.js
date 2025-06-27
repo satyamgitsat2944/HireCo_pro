@@ -1,127 +1,4 @@
-// import express from "express";
-// import { config } from "dotenv";
-// import cors from "cors";
-// import cookieParser from "cookie-parser";
-// import { connection } from "./database/connection.js";
-// import { errorMiddleware } from "./middlewares/error.js";
-// import fileUpload from "express-fileupload";
-// import userRouter from "./router/userRouter.js";
-// import jobRouter from "./router/jobRouter.js";
-// import applicationRouter from "./router/applicationRouter.js";
-// import { newsLetterCron } from "./automation/newsLetterCron.js";
 
-
-// const session = require("express-session");
-// const passport = require("passport");
-// const OAuth2Strategy = require("passport-google-oauth2").Strategy;
-// // const userdb = require("./model/usermodel");
-// const clientid = "688297758592-qbnfc5kpj3ksthrel68skm28lv9pifov.apps.googleusercontent.com";
-// const clientsecret = "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";
-
-// // Session middleware setup
-// app.use(
-//   session({
-//     secret: "HireCo12398760239%^&%$#", 
-//     resave: false,
-//     saveUninitialized: true,
-//   })
-// );
-// app.use((req, res, next) => {
-//     console.log(`Request received: ${req.method} ${req.url}`);
-//     next();
-// });
-
-
-// // Initialize Passport.js middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// // Setup Google OAuth strategy
-// passport.use(
-//   new OAuth2Strategy(
-//     {
-//       clientID: clientid,
-//       clientSecret: clientsecret,
-//       callbackURL: "http://localhost:4000/auth/google/callback",
-//       // Must match Google Console
-//       scope: ["profile", "email"],
-//     },
-//     async (accessToken, refreshToken, profile, done) => {
-//       console.log("Google profile:", profile);
-//       try {
-//         // Find user or create new one
-//         let user = await userdb.findOne({ googleId: profile.id }); // corrected 'findOne'
-//         if (!user) {
-//           user = new userdb({
-//             googleId: profile.id,
-//             displayName: profile.displayName,
-//             email: profile.emails[0].value,
-//             image: profile.photos[0].value,
-//           });
-//           await user.save();
-//         }
-//         return done(null, user); // Pass user to serializeUser
-//       } catch (error) {
-//         return done(error, null); // Handle errors gracefully
-//       }
-//     }
-//   )
-// );
-
-// // Used to store user info in session
-// passport.serializeUser((user, done) => {
-//   done(null, user); // Serialize full user object (you can use user.id for lighter sessions)
-// });
-
-// // Used to retrieve user from session
-// passport.deserializeUser((user, done) => {
-//   done(null, user);
-// });
-
-// // Initialize Google OAuth login
-// app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-
-// // Callback route after Google auth
-// app.get(
-//   "/auth/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: "http://localhost:5173/dashboard", // redirect on successful login
-//     failureRedirect: "http://localhost:5173/login", // redirect on failure
-//   })
-// );
-
-
-// const app = express();
-// config({ path: "./config/config.env" });
-
-// app.use(
-//   cors({
-//     origin: [process.env.FRONTEND_URL],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
-// app.use(cookieParser());
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(
-//   fileUpload({
-//     useTempFiles: true,
-//     tempFileDir: "/tmp/",
-//   })
-// );
-
-// app.use("/api/v1/user", userRouter);
-// app.use("/api/v1/job", jobRouter);
-// app.use("/api/v1/application", applicationRouter);
-
-// newsLetterCron()
-// connection();
-// app.use(errorMiddleware);
-
-// export default app;
 
 
 
@@ -177,13 +54,33 @@ if (missingVars.length > 0) {
 const app = express();
 
 // Middleware setup
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://hireco-pro-frontend.onrender.com'
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 
 
