@@ -83,7 +83,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://hireco-akk.onrender.com/",
+    origin: "https://hireco-akk.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
