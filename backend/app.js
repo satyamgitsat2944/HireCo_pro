@@ -62,10 +62,10 @@ const app = express();
 //   })
 // );
 
-const allowedOrigins = [
-  // 'http://localhost:5173',
-  'https://hireco-pro-frontend.onrender.com'
-];
+// const allowedOrigins = [
+//   // 'http://localhost:5173',
+//   'https://hireco-pro-frontend.onrender.com'
+// ];
 
 // app.use(
 //   cors({
@@ -83,7 +83,7 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: "https://hireco-pro-frontend.onrender.com",
+    origin: "https://hireco-akk.onrender.com/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
