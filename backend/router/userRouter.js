@@ -60,7 +60,9 @@ router.get('/auth/google/callback',
       });
 
       // Redirect with token in URL (for frontend)
-      res.redirect(`${process.env.FRONTEND_URL}/login/success?token=${token}`);
+      // res.redirect(`${https://hireco-akk.onrender.com}/login/success?token=${token}`);
+      res.redirect(`https://hireco-akk.onrender.com/login/success?token=${token}`);
+
     } catch (err) {
       console.error('Authentication error:', err);
       res.redirect('/login?error=auth_error');
@@ -116,7 +118,7 @@ router.get('/google/logout', isAuthenticated, async (req, res) => {
     res.status(200).json({ 
       success: true, 
       message: 'Logout successful',
-      redirectUrl: `${process.env.FRONTEND_URL}/login`
+      redirectUrl: `https://hireco-akk.onrender.com/login`
     });
   } catch (err) {
     console.error('Logout error:', err);
