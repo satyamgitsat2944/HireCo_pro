@@ -151,7 +151,7 @@ export const updateProfile = (data) => async (dispatch) => {
   dispatch(updateProfileSlice.actions.updateProfileRequest());
   try {
     const response = await axios.put(
-      "http://localhost:4000/api/v1/user/update/profile",
+      "https://hireco-ak.onrender.com/api/v1/user/update/profile",
       data,
       {
         withCredentials: true,
@@ -172,7 +172,7 @@ export const updatePassword = (data) => async (dispatch) => {
   dispatch(updateProfileSlice.actions.updatePasswordRequest());
   try {
     const response = await axios.put(
-      "http://localhost:4000/api/v1/user/update/password",
+      "https://hireco-ak.onrender.com/api/v1/user/update/password",
       data,
       {
         withCredentials: true,
@@ -196,7 +196,7 @@ export const forgotPassword = createAsyncThunk(
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/password/forgot",
+        "https://hireco-ak.onrender.com/api/v1/password/forgot",
         { email },
         config
       );
@@ -213,7 +213,7 @@ export const resetPassword = createAsyncThunk(
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.put(
-        `http://localhost:4000/api/v1/password/reset/${token}`,
+        `https://hireco-ak.onrender.com/api/v1/password/reset/${token}`,
         { password },
         config
       );

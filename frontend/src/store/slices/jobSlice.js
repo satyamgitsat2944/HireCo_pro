@@ -335,7 +335,7 @@ export const fetchJobs = (filters = {}) => async (dispatch) => {
     });
 
     const response = await axios.get(
-      `http://localhost:4000/api/v1/job/getall?${params.toString()}`,
+      `https://hireco-ak.onrender.com/api/v1/job/getall?${params.toString()}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForAllJobs(response.data));
@@ -352,7 +352,7 @@ export const fetchSingleJob = (jobId) => async (dispatch) => {
   try {
     dispatch(jobSlice.actions.requestForSingleJob());
     const response = await axios.get(
-      `http://localhost:4000/api/v1/job/get/${jobId}`,
+      `https://hireco-ak.onrender.com/api/v1/job/get/${jobId}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForSingleJob(response.data.job));
@@ -369,7 +369,7 @@ export const postJob = (formData) => async (dispatch) => {
   try {
     dispatch(jobSlice.actions.requestForPostJob());
     const response = await axios.post(
-      "http://localhost:4000/api/v1/job/post",
+      "https://hireco-ak.onrender.com/api/v1/job/post",
       formData,
       {
         withCredentials: true,
@@ -393,7 +393,7 @@ export const getMyJobs = () => async (dispatch) => {
   try {
     dispatch(jobSlice.actions.requestForMyJobs());
     const response = await axios.get(
-      "http://localhost:4000/api/v1/job/getmyjobs",
+      "https://hireco-ak.onrender.com/api/v1/job/getmyjobs",
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForMyJobs(response.data.myJobs));
@@ -410,7 +410,7 @@ export const deleteJob = (id) => async (dispatch) => {
   try {
     dispatch(jobSlice.actions.requestForDeleteJob());
     const response = await axios.delete(
-      `http://localhost:4000/api/v1/job/delete/${id}`,
+      `https://hireco-ak.onrender.com/api/v1/job/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForDeleteJob(response.data.message));

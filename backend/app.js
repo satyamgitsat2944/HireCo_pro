@@ -191,7 +191,7 @@ app.use(
 // *****
 // In your main App.js or similar
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:4000/api/v1';
+axios.defaults.baseURL = 'https://hireco-ak.onrender.com/api/v1';
 
 // Add response interceptor
 axios.interceptors.response.use(

@@ -828,7 +828,7 @@ export const register = (data) => async (dispatch) => {
   dispatch(registerRequest());
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/user/register",
+      "https://hireco-ak.onrender.com/api/v1/user/register",
       data,
       {
         withCredentials: true,
@@ -849,7 +849,7 @@ export const login = (data) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/user/login",
+      "https://hireco-ak.onrender.com/api/v1/user/login",
       data,
       {
         withCredentials: true,
@@ -877,7 +877,7 @@ export const getUser = () => async (dispatch) => {
   dispatch(fetchUserRequest());
   try {
     const response = await axios.get(
-      "http://localhost:4000/api/v1/user/getuser",
+      "https://hireco-ak.onrender.com/api/v1/user/getuser",
       {
         withCredentials: true,
         headers: {
@@ -939,7 +939,7 @@ export const logout = () => async (dispatch) => {
 export const checkAuthStatus = () => async (dispatch) => {
   dispatch(checkAuthRequest());
   try {
-    const { data } = await axios.get("http://localhost:4000/auth/check", {
+    const { data } = await axios.get("https://hireco-ak.onrender.com/auth/check", {
       withCredentials: true
     });
     
