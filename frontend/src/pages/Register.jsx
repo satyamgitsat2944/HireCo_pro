@@ -78,7 +78,7 @@ const Register = () => {
 
   const loginWithGoogle = () => {
     setGoogleLoading(true);
-    window.open("http://localhost:4000/auth/google", "_self");
+    window.open("https://hireco-ak.onrender.com/auth/google", "_self");
   };
 
   useEffect(() => {
