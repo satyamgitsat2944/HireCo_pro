@@ -235,7 +235,7 @@ const Login = () => {
 
     const checkAuthStatus = async () => {
       try {
-        const { data } = await axios.get("http://localhost:4000/auth/check", {
+        const { data } = await axios.get("https://hireco-ak.onrender.com/auth/check", {
           withCredentials: true
         });
         
@@ -310,7 +310,7 @@ useEffect(() => {
 
   const loginWithGoogle = () => {
     // Use window.location instead of window.open
-    window.location.href = ` http://localhost:4000/auth/google`;
+    window.location.href = ` https://hireco-ak.onrender.com/auth/google`;
   };
  
 
